@@ -1,0 +1,3 @@
+const DEFAULTS={backendUrl:'http://127.0.0.1:5000',autoAnalysis:false,showSignals:true};
+chrome.runtime.onInstalled.addListener(()=>chrome.storage.local.set(DEFAULTS));
+chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{if(msg.type==='GET_SETTINGS'){chrome.storage.local.get(DEFAULTS).then(sendResponse);return true;}if(msg.type==='ANALYZE'){chrome.storage.local.get(DEFAULTS).then(async cfg=>{try{const r=await fetch(cfg.backendUrl+'/api/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg.message,source:'extension'})});sendResponse(await r.json())}catch(e){sendResponse({error:'Backend unavailable. Start the local Flask server.'})}});return true;}});

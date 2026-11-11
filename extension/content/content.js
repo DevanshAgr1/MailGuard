@@ -1,0 +1,1 @@
+chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{if(msg.type==='EXTRACT'){const selection=window.getSelection()?.toString().trim();const main=document.body?.innerText||'';sendResponse({text:(selection||main).slice(0,12000)});}});

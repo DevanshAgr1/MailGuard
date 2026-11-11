@@ -1,0 +1,13 @@
+{
+  "best_model": "Random Forest",
+  "metrics": {
+    "model": "Random Forest",
+    "accuracy": 0.9950738916256158,
+    "precision": 1.0,
+    "recall": 0.9900990099009901,
+    "f1": 0.9950248756218906,
+    "roc_auc": 0.9997087944088526
+  },
+  "n_samples": 1012,
+  "n_features": 744
+}
